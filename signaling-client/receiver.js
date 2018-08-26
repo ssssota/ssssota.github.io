@@ -8,8 +8,7 @@ navigator.getUserMedia =    navigator.getUserMedia || navigator.mozGetUserMedia 
 
 let pc, dc
 
-const host = location.origin.replace(/^http/, 'ws')
-const ws = new WebSocket(host)
+const ws = new WebSocket('http://signalingsv.herokuapp.com/')
 ws.onopen = e => {
     dispLog('ws onopen', e)
 }
