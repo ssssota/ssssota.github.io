@@ -56,7 +56,17 @@ const setOffer = async sdp => {
             dispLog('dc onclose', e)
         }
         dc.onmessage = e => {
-            dispLog('dc onmessage', e, e.data)
+            dispLog('dc onmessage', e)
+            const data = JSON.parse(e.data)
+            const $a = document.createElement('a')
+            $a.href = data.dataurl
+            $a.download = data.filename
+            $a.target = '_blank'
+            const $text = document.createTextNode('download')
+            $a.appendChild($text)
+            const $p = document.createElement('p')
+            $p.appendChild($a)
+            document.body.appendChild($p)
         }
     }
 

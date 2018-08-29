@@ -79,12 +79,30 @@ const dispLog = (...objs) => {
     objs.forEach(obj => {
         if (typeof obj === 'string') {
             console.log(obj)
-            document.body.insertAdjacentHTML('beforeend', `<p>${obj}</p>`);
+            document.body.insertAdjacentHTML('beforeend', `<p>${obj}</p>`)
         } else {
             console.log(obj)
-            document.body.insertAdjacentHTML('beforeend', `<p>${obj.toString()} ${JSON.stringify(obj)}</p>`);
+            document.body.insertAdjacentHTML('beforeend', `<p>${obj.toString()} ${JSON.stringify(obj)}</p>`)
         }
     })
 }
+
+const $file = document.querySelector('#file')
+const $sendBtn = document.querySelector('#sendBtn')
+$sendBtn.addEventListener('click', e => {
+    const file = $file.files[0]
+    if (!file || dc.readyState !== 'open') return
+
+    const fr = new FileReader()
+    fr.addEventListener('load', e => {
+        console.log('read file')
+        dc.send(JSON.stringify({
+            'filename': file.name,
+            'dataurl': fr.result
+        }))
+    })
+    fr.readAsDataURL(file)
+    console.log('reading file')
+})
 
 makeOffer()
