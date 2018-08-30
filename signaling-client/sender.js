@@ -95,14 +95,14 @@ $sendBtn.addEventListener('click', e => {
 
     const fr = new FileReader()
     fr.addEventListener('load', e => {
-        console.log('read file')
+        dispLog('read file')
         dc.send(JSON.stringify({
             'filename': file.name,
             'dataurl': fr.result
         }))
     })
     fr.readAsDataURL(file)
-    console.log('reading file')
+    dispLog('reading file')
 })
 
 makeOffer()
