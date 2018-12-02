@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+    div {
+        margin: 0;
+        padding: 0;
+        font-size: 25rem;
+        width: 100%;
+        overflow: hidden;
+    }
+    #left {
+        background: #111;
+        color: #eee;
+        height: 50%;
+    }
+    #right {
+        background: #eee;
+        color: #111;
+        height: 50%;
+    }
+    </style>
+</head>
+<body>
+    <div class="timer" id="left">15.000</div>
+    <div class="timer" id="right">15.000</div>
+    <script>
+    
+    const getUrlParam = (str) => {
+        const arr = location.search.substring(1).split('=')
+        if (arr.indexOf(str) !== -1) {
+            return arr[arr.indexOf(str)+1]
+        }
+        return null
+    }
+
+    const change = () => {
+        isleft = !isleft
+        clearTimeout(timer)
+        before = Date.now()
+        tick()
+    }
+
+    const tick = () => {
+        ((isleft)? $left: $right).innerHTML = time - Math.floor(Date.now() - before) / 1000
+        timer = setTimeout(tick, 10)
+    }
+
+    const $left = document.querySelector('#left')
+    const $right = document.querySelector('#right')
+    const time = getUrlParam('time')
+    let before = 0
+    let isleft = false
+    let timer
+
+    window.addEventListener('keyup', (e) => {
+        switch (e.key) {
+            case ' ':
+                change()
+                break
+            case 'Escape':
+                reset()
+                break
+        }
+    })
+    </script>
+</body>
+</html>
