@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Timer | Push to start</title>
     <style>
     html, body {
         margin: 0;
@@ -63,16 +63,16 @@
     let isleft = false
     let timer
 
+    if (!time) location.href += '?time=15'
+
     window.addEventListener('keyup', (e) => {
         switch (e.key) {
             case ' ':
                 change()
                 break
-            case 'Escape':
-                reset()
-                break
         }
     })
+    document.body.addEventListener('click', change)
     </script>
 </body>
 </html>
