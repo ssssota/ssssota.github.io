@@ -13,16 +13,7 @@
     <div class="container">
         <div id="content"></div>
     </div>
-    <script>
-        document.addEventListener('DOMConstenLoaded', () => {
-            const xhr = new XMLHttpRequest();
-            xhr.addEventListener('load', e => {
-                console.log(xhr)
-                console.log(this)
-                console.log(e)
-            })
-            xhr.open('get', './test.md')
-        })
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="./src/index.js"></script>
 </body>
 </html>
