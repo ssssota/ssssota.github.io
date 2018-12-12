@@ -12,15 +12,17 @@ const urlParam = (() => {
 })()
 
 document.addEventListener('DOMContentLoaded', () => {
+  const xhr = new XMLHttpRequest()
+  xhr.addEventListener('load', () => {
+    console.log(xhr.response)
+    $content.insertAdjacentHTML('afterbegin', marked(xhr.response))
+  })
   if (urlParam.page) {
-    const xhr = new XMLHttpRequest()
-    xhr.addEventListener('load', () => {
-      console.log(xhr.response)
-      $content.insertAdjacentHTML('afterbegin', marked(xhr.response))
-    })
-    xhr.open('get', './'+urlParam.page.replace(/./g, '/')+'.md')
-    xhr.send()
+    const url = './'+urlParam.page.replace(/\./g, '/').replace(/\/$/, '/index')+'.md'
+    console.log(url)
+    xhr.open('get', url)
   } else {
-    console.log('no spec')
+    xhr.open('get', './index.md')
   }
+  xhr.send()
 })
