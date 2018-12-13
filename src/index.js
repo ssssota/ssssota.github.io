@@ -18,7 +18,20 @@ const loadMarkdownToElem = $elem => url => {
   const xhr = new XMLHttpRequest()
   xhr.addEventListener('progress', e => console.log(e))
   xhr.addEventListener('load', () => {
-    resetHTML($elem, marked(xhr.responseText))
+    switch (xhr.status) {
+      case 200:
+        resetHTML($elem, marked(xhr.responseText))
+        break
+      case 404:
+        resetHTML($elem, marked(
+`
+# 404 file not found error.
+
+[Go top](/)
+`
+        ))
+        break
+    }
     setupOriginLink()
   })
   xhr.open('get', url)
@@ -67,6 +80,7 @@ const isSamePath = (url) => {
 document.addEventListener('DOMContentLoaded', () => {
   loadMarkdown(pageParamToUrl(urlParam))
 })
+// 遷移が発生したら
 onpopstate = e => {
   loadMarkdown(pageParamToUrl(getUrlParam()))
 }
