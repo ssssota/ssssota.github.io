@@ -1,0 +1,45 @@
+/* Normalize */
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    font-size: 16px;
+    background-color: #fcfcfc;
+    color: #323232;
+}
+html, body, div, header, article, footer, p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+
+/* Main */
+header {
+    background: #323232;
+    color: #f0f0f0;
+
+    padding: 1em;
+}
+    header h1 {
+        font-family: serif;
+    }
+    header a {
+        text-decoration: none;
+    }
+    header a:visited {
+        color: #f0f0f0;
+    }
+.container {
+    padding: 1em;
+}
+    .container .markdown-body {
+        padding: 1em;
+    }
+
+@media (max-width: 640px) {
+    .container {
+        padding: 0.5em;
+    }
+        .container .markdown-body {
+            padding: 0.5em;
+        }
+}
