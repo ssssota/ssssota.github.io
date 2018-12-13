@@ -1,28 +1,72 @@
 const $content = document.querySelector('#content')
-const urlParam = (() => {
+
+// URLパラメータを取得
+const getUrlParam = (search) => {
   const obj = {}
-  const opts = location.search.substr(1).split('&')
+  const opts = (search || location.search).substr(1).split('&')
   opts.forEach(opt => {
     if (opt === '') return
     const [key, val] = opt.split('=')
     obj[key] = val
   })
-  console.log(obj)
   return obj
-})()
+}
+const urlParam = getUrlParam()
 
-document.addEventListener('DOMContentLoaded', () => {
+ // 指定要素にマークダウンをロード
+const loadMarkdownToElem = $elem => url => {
   const xhr = new XMLHttpRequest()
+  xhr.addEventListener('progress', e => console.log(e))
   xhr.addEventListener('load', () => {
-    console.log(xhr.response)
-    $content.insertAdjacentHTML('afterbegin', marked(xhr.response))
+    resetHTML($elem, marked(xhr.responseText))
+    setupOriginLink()
   })
-  if (urlParam.page) {
-    const url = './'+urlParam.page.replace(/\./g, '/').replace(/\/$/, '/index')+'.md'
-    console.log(url)
-    xhr.open('get', url)
-  } else {
-    xhr.open('get', './index.md')
-  }
+  xhr.open('get', url)
   xhr.send()
+}
+const loadMarkdown = loadMarkdownToElem($content)
+
+// HTMLテキストから要素をリセット = innerHTML
+const resetHTML = ($elem, htmlText) => {
+  $elem.textContent = ''
+  $elem.insertAdjacentHTML('afterbegin', htmlText)
+}
+
+// 同一オリジンのリンクを設定
+const setupOriginLink = () => {
+  document.querySelectorAll('a[href]').forEach($e => {
+    const url = new URL($e.href)
+    if (isSamePath(url)) {
+      $e.addEventListener('click', e => {
+        e.preventDefault()
+        pageTransition(url)
+      })
+    }
+  })
+}
+
+// 指定URLオブジェクトに遷移
+const pageTransition = (url) => {
+  history.pushState(null, '', url.href)
+  loadMarkdown(pageParamToUrl(getUrlParam(url.search)))
+}
+
+// ページパラメータからmarkdownのURLを生成
+const pageParamToUrl = param => {
+  return (param.page)?
+    './' + param.page.replace(/\./g, '/').replace(/\/$/, '/index') + '.md':
+    './index.md'
+}
+
+// URLオブジェクトは同じパスか
+const isSamePath = (url) => {
+  return url.origin === location.origin && url.pathname.replace(/index\.html/, '') === '/' && getUrlParam(url.search).page
+}
+
+// onload
+document.addEventListener('DOMContentLoaded', () => {
+  loadMarkdown(pageParamToUrl(urlParam))
 })
+onpopstate = e => {
+  loadMarkdown(pageParamToUrl(getUrlParam()))
+}
