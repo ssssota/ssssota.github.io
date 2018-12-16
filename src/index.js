@@ -18,20 +18,7 @@ const loadMarkdownToElem = $elem => url => {
   const xhr = new XMLHttpRequest()
   xhr.addEventListener('progress', e => console.log(e))
   xhr.addEventListener('load', () => {
-    switch (xhr.status) {
-      case 200:
-        resetHTML($elem, marked(xhr.responseText))
-        break
-      case 404:
-        resetHTML($elem, marked(
-`
-# 404 file not found error.
-
-[Go top](/)
-`
-        ))
-        break
-    }
+    resetHTML($elem, marked(xhr.responseText))
     setupOriginLink()
   })
   xhr.open('get', url)
