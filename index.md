@@ -2,7 +2,7 @@
 
 ssssotaのポートフォリオ的なページです．
 
-## [Fontviewer](./index.html?page=fontivewer.)
+## [Fontviewer](./index.html?page=fontviewer.)
 
 フォント一覧を表示するデスクトップアプリです．
 

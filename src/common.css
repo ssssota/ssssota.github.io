@@ -29,14 +29,17 @@ header {
         color: #f0f0f0;
     }
 .container {
-    padding: 1em;
+    width: 50%;
+    margin: 1em auto;
 }
     .container .markdown-body {
         padding: 1em;
     }
 
-@media (max-width: 640px) {
+@media (max-width: 1080px) {
     .container {
+        width: auto;
+        margin: 0;
         padding: 0.5em;
     }
         .container .markdown-body {
