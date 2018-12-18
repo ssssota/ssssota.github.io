@@ -32,6 +32,9 @@ header {
     width: 50%;
     margin: 1em auto;
 }
+    .container #content {
+        transition: all .1s;
+    }
     .container .markdown-body {
         padding: 1em;
     }

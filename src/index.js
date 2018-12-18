@@ -15,6 +15,7 @@ const urlParam = getUrlParam()
 
  // 指定要素にマークダウンをロード
 const loadMarkdownToElem = $elem => url => {
+  $elem.style.opacity = '0'
   const xhr = new XMLHttpRequest()
   xhr.addEventListener('progress', e => console.log(e))
   xhr.addEventListener('load', () => {
@@ -30,6 +31,7 @@ const loadMarkdown = loadMarkdownToElem($content)
 const resetHTML = ($elem, htmlText) => {
   $elem.textContent = ''
   $elem.insertAdjacentHTML('afterbegin', htmlText)
+  $elem.style.opacity = '1'
 }
 
 // 同一オリジンのリンクを設定
