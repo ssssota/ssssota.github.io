@@ -1,0 +1,34 @@
+body {
+    background: #def;
+}
+
+input {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: #fff;
+    outline: 0;
+    border-bottom: #ddd 1px solid;
+}
+input[type='button'], input[type='submit'] {
+    background: #5ae;
+    color: #fff;
+    border-radius: 0.5em;
+    padding: 0.5em 1.5em;
+}
+
+.container {
+    background: #fefefe;
+    text-align: center;
+    padding: 1em;
+    border-radius: 1em;
+        width: 50%;
+        margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+    .container {
+        width: 95%;
+        margin: 0 auto;
+    }
+}
