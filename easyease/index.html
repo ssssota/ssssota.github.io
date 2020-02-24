@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviutl easting tra easy-ease</title>
+  <style>
+    @font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Medium"), local("YuGothic-Medium");                    }
+    @font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Bold")  , local("YuGothic-Bold")  ; font-weight: bold; }
+    body { font-family: YuGothic, "Yu Gothic", sans-serif; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    header {
+      padding: 1em;
+      margin-bottom: 2em;
+      background-color: darkcyan;
+      color: whitesmoke;
+
+      box-shadow: 0 0 1em 0 black;
+    }
+      header h1,
+      header p {
+        margin: 0;
+        padding: 0;
+      }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+      main img {
+        width: 100%;
+      }
+        main form {
+          margin: 0 1em;
+        }
+        main form .wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+        }
+          main form .wrapper .types-wrapper {
+            margin-right: 3em;
+          }
+        main form .button-wrapper {
+          text-align: center;
+        }
+          main form .button-wrapper input {
+            border: 0;
+            appearance: none;
+            outline: none;
+            background-color: cadetblue;
+            color: whitesmoke;
+            font-size: 1.5em;
+            padding: 0.25em 0.75em;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px 0 grey;
+            cursor: pointer;
+            transition: box-shadow ease .2s;
+            font-family: YuGothic, "Yu Gothic", sans-serif;
+          }
+          main form .button-wrapper input:hover {
+            box-shadow: 0 1px 3px 0 black;
+          }
+    footer {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>イージーイーズジェネレータ</h1>
+    <p>Undo Fish氏作成Aviutlスクリプト「イージングスクリプト トラックバー対応版」のよく使うものを番号を打ち込まずに使えるようにする。</p>
+  </header>
+  <main>
+    <div class="error">
+      <noscript>Javascriptを有効にしてご利用ください。</noscript>
+    </div>
+    <img src="easing.png" alt="イージング参考図">
+    <form id="generator">
+      <p>よく使うものにチェックを入れてください。</p>
+      <p>詳細は<a href="https://www.nicovideo.jp/watch/sm20813281">動画</a>を参照のこと。</p>
+      <p>チェックを多く入れれば呼び出しが容易になるものも増えるが、動作が遅くなる。</p>
+      <div class="wrapper">
+        <div class="types-wrapper">
+          <h3>通常版</h3>
+          <ol class="types normal" data-type="normal">
+          </ol>
+        </div>
+        <div class="types-wrapper">
+          <h3>補間移動版</h3>
+          <ol class="types interpolation" data-type="interpolation">
+          </ol>
+        </div>
+      </div>
+      <p class="button-wrapper"><input type="submit" value="生成"></p>
+    </form>
+  </main>
+  <footer><small>&copy; 2020 s_size</small></footer>
+  <script>
+    const typeMap = ["Linear","EaseInQuad","EaseOutQuad","EaseInOutQuad","EaseOutInQuad","EaseInCubic","EaseOutCubic","EaseInOutCubic","EaseOutInCubic","EaseInQuart","EaseOutQuart","EaseInOutQuart","EaseOutInQuart","EaseInQuint","EaseOutQuint","EaseInOutQuint","EaseOutInQuint","EaseInSine","EaseOutSine","EaseInOutSine","EaseOutInSine","EaseInExpo","EaseOutExpo","EaseInOutExpo","EaseOutInExpo","EaseInCirc","EaseOutCirc","EaseInOutCirc","EaseOutInCirc","EaseInElastic","EaseOutElastic","EaseInOutElastic","EaseOutInElastic","EaseInBack","EaseOutBack","EaseInOutBack","EaseOutInBack","EaseInBounce","EaseOutBounce","EaseInOutBounce","EaseOutInBounce"]
+    const $generator = document.querySelector('#generator')
+
+    $generator.addEventListener('submit', ev => {
+      ev.preventDefault()
+
+      let result = ''
+
+      $generator.normal.forEach(($e, i) => {
+        if ($e.checked) {
+result += `
+@${i+1}:${typeMap[i]}
+local E = require("easing_aviutl")
+local index,ratio = math.modf(obj.getpoint("index"))
+local st,ed = obj.getpoint(index),obj.getpoint(index+1)
+local r = E.easing(${i+1},ratio,st,ed-st,1)
+return r`
+        }
+      })
+
+      $generator.interpolation.forEach(($e, i) => {
+        if ($e.checked) {
+result += `
+@${i+1}:${typeMap[i]}（補間移動）
+local E = require("easing_aviutl")
+local total = obj.getpoint("time",obj.getpoint("num")-1)
+local r = E.easing(${i+1},obj.getpoint("time"),0,obj.getpoint("num")-1,total)
+index,ratio = math.modf(r)
+num = obj.getpoint("num")
+if(index<0)then
+  ratio=ratio+index
+  index=0
+end
+if(index>num-2)then
+  ratio=ratio+(index-(num-2))
+  index=num-2
+end
+local x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3
+if( index > 0 or obj.getpoint("accelerate") ) then
+	x0,y0,z0 = obj.getpoint(index-1,0,3)
+else
+	x0,y0,z0 = obj.getpoint(0,0,3)
+	x1,y1,z1 = obj.getpoint(1,0,3)
+	x2,y2,z2 = obj.getpoint(2,0,3)
+	x0 = x0+(x0-x1*2+x2)/2
+	y0 = y0+(y0-y1*2+y2)/2
+	z0 = z0+(z0-z1*2+y2)/2
+end
+if( index < num-2 or obj.getpoint("decelerate") ) then
+	x3,y3,z3 = obj.getpoint(index+2,0,3)
+else
+	x3,y3,z3 = obj.getpoint(num-1,0,3)
+	x2,y2,z2 = obj.getpoint(num-2,0,3)
+	x1,y1,z1 = obj.getpoint(num-3,0,3)
+	x3 = x3+(x3-x2*2+x1)/2
+	y3 = y3+(y3-y2*2+y1)/2
+	z3 = z3+(z3-z2*2+y1)/2
+end
+x1,y1,z1 = obj.getpoint(index  ,0,3)
+x2,y2,z2 = obj.getpoint(index+1,0,3)
+i,n = obj.getpoint("link")
+if( n < 3 ) then
+	z0,z1,z2 = 0,0,0;
+	if( n < 2 ) then
+		y0,y1,y2 = 0,0,0;
+	end
+end
+
+x0,y0,z0 = obj.interpolation(ratio,x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3)
+return x0;`
+        }
+      })
+
+      console.log(result)
+      const blob = new Blob([result.trim()], { type: 'text/plain' })
+      const reader = new FileReader()
+      reader.addEventListener('load', () => {
+        const $a = document.createElement('a')
+        $a.target = '_blank'
+        $a.href = reader.result
+        $a.downlaod = '@イージーイーズ.tra'
+        location.href = reader.result
+        document.body.appendChild($a)
+        $a.click()
+        $a.parentNode.removeChild($a)
+        console.log(reader.result)
+      })
+      reader.readAsDataURL(blob)
+    })
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const $error = document.querySelector('.error')
+      const errorHTML = '<p>ご利用のブラウザは対応していません。</p>'
+      if (!window.File || !window.FileReader) $error.insertAdjacentHTML('beforeend', errorHTML)
+      document.querySelectorAll('.types').forEach($e => {
+        typeMap.forEach((type, i) => {
+          $e.insertAdjacentHTML('beforeend', `<li><label><input type="checkbox" name="${$e.dataset.type}" value="${i+1}">${type}</label></li>`)
+        })
+      })
+    })
+  </script>
+</body>
+</html>
