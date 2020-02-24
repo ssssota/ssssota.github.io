@@ -81,7 +81,7 @@
     <div class="error">
       <noscript>Javascriptを有効にしてご利用ください。</noscript>
     </div>
-    <img src="easing.png" alt="イージング参考図">
+    <img src="./easing.png" alt="イージング参考図">
     <form id="generator">
       <p>よく使うものにチェックを入れてください。</p>
       <p>詳細は<a href="https://www.nicovideo.jp/watch/sm20813281">動画</a>を参照のこと。</p>
@@ -102,9 +102,11 @@
     </form>
   </main>
   <footer><small>&copy; 2020 s_size</small></footer>
+  <script src="./encoding.min.js"></script>
   <script>
     const typeMap = ["Linear","EaseInQuad","EaseOutQuad","EaseInOutQuad","EaseOutInQuad","EaseInCubic","EaseOutCubic","EaseInOutCubic","EaseOutInCubic","EaseInQuart","EaseOutQuart","EaseInOutQuart","EaseOutInQuart","EaseInQuint","EaseOutQuint","EaseInOutQuint","EaseOutInQuint","EaseInSine","EaseOutSine","EaseInOutSine","EaseOutInSine","EaseInExpo","EaseOutExpo","EaseInOutExpo","EaseOutInExpo","EaseInCirc","EaseOutCirc","EaseInOutCirc","EaseOutInCirc","EaseInElastic","EaseOutElastic","EaseInOutElastic","EaseOutInElastic","EaseInBack","EaseOutBack","EaseInOutBack","EaseOutInBack","EaseInBounce","EaseOutBounce","EaseInOutBounce","EaseOutInBounce"]
     const $generator = document.querySelector('#generator')
+    const $result = document.querySelector('#result')
 
     $generator.addEventListener('submit', ev => {
       ev.preventDefault()
@@ -142,53 +144,54 @@ if(index>num-2)then
 end
 local x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3
 if( index > 0 or obj.getpoint("accelerate") ) then
-	x0,y0,z0 = obj.getpoint(index-1,0,3)
+  x0,y0,z0 = obj.getpoint(index-1,0,3)
 else
-	x0,y0,z0 = obj.getpoint(0,0,3)
-	x1,y1,z1 = obj.getpoint(1,0,3)
-	x2,y2,z2 = obj.getpoint(2,0,3)
-	x0 = x0+(x0-x1*2+x2)/2
-	y0 = y0+(y0-y1*2+y2)/2
-	z0 = z0+(z0-z1*2+y2)/2
+  x0,y0,z0 = obj.getpoint(0,0,3)
+  x1,y1,z1 = obj.getpoint(1,0,3)
+  x2,y2,z2 = obj.getpoint(2,0,3)
+  x0 = x0+(x0-x1*2+x2)/2
+  y0 = y0+(y0-y1*2+y2)/2
+  z0 = z0+(z0-z1*2+y2)/2
 end
 if( index < num-2 or obj.getpoint("decelerate") ) then
-	x3,y3,z3 = obj.getpoint(index+2,0,3)
+  x3,y3,z3 = obj.getpoint(index+2,0,3)
 else
-	x3,y3,z3 = obj.getpoint(num-1,0,3)
-	x2,y2,z2 = obj.getpoint(num-2,0,3)
-	x1,y1,z1 = obj.getpoint(num-3,0,3)
-	x3 = x3+(x3-x2*2+x1)/2
-	y3 = y3+(y3-y2*2+y1)/2
-	z3 = z3+(z3-z2*2+y1)/2
+  x3,y3,z3 = obj.getpoint(num-1,0,3)
+  x2,y2,z2 = obj.getpoint(num-2,0,3)
+  x1,y1,z1 = obj.getpoint(num-3,0,3)
+  x3 = x3+(x3-x2*2+x1)/2
+  y3 = y3+(y3-y2*2+y1)/2
+  z3 = z3+(z3-z2*2+y1)/2
 end
 x1,y1,z1 = obj.getpoint(index  ,0,3)
 x2,y2,z2 = obj.getpoint(index+1,0,3)
 i,n = obj.getpoint("link")
 if( n < 3 ) then
-	z0,z1,z2 = 0,0,0;
-	if( n < 2 ) then
-		y0,y1,y2 = 0,0,0;
-	end
+  z0,z1,z2 = 0,0,0;
+  if( n < 2 ) then
+    y0,y1,y2 = 0,0,0;
+  end
 end
-
 x0,y0,z0 = obj.interpolation(ratio,x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3)
 return x0;`
         }
       })
 
-      console.log(result)
-      const blob = new Blob([result.trim()], { type: 'text/plain' })
+      if (result === '') return
+
+      
+
+      const $a = document.createElement('a')
+      const blob = new Blob([new Uint8Array(Encoding.convert(result.trim().split('').map((_, i) => result.charCodeAt(i)), { from: 'unicode', to: 'sjis' }))], { type: 'text/plain' })
       const reader = new FileReader()
       reader.addEventListener('load', () => {
-        const $a = document.createElement('a')
         $a.target = '_blank'
         $a.href = reader.result
-        $a.downlaod = '@イージーイーズ.tra'
-        location.href = reader.result
+        $a.download = '@イージーイーズ.tra'
+        $a.textContent = reader.result
         document.body.appendChild($a)
         $a.click()
         $a.parentNode.removeChild($a)
-        console.log(reader.result)
       })
       reader.readAsDataURL(blob)
     })
