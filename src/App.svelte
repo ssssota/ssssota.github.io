@@ -54,6 +54,12 @@ main {
 		& > :global(section > div > h3) {
 			margin-bottom: 0;
 			font-size: 2em;
+
+			&::before {
+				content: '#';
+				margin-right: 0.5em;
+				cursor: default;
+			}
 		}
 	}
 }
