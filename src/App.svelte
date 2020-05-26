@@ -64,9 +64,15 @@ main {
 	}
 }
 
+@media (max-width: 1304px) {
+	main article {
+		width: 95%;
+	}
+}
+
 @keyframes background-gradient {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+	0%{background-position:0% 50%}
+	50%{background-position:100% 50%}
+	100%{background-position:0% 50%}
 }
 </style>

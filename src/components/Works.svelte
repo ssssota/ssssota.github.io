@@ -55,9 +55,15 @@
 </Item>
 
 <style type="text/scss">
+img {
+  margin: 1em;
+  display: block;
+  height: 5em;
+}
+  
+@media (max-width: 1304px) {
   img {
-    margin: 1em;
-    display: block;
-    height: 5em;
+    height: 3em;
   }
+}
 </style>
