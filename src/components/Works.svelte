@@ -5,12 +5,12 @@
 
 <Item title="Works">
   <span slot="content">
-    <Item title="nwoc-sm">
+    <Item title="nwoc-sm" href="https://github.com/ssssota/nwoc-sm" target="_blank">
       <img src="https://raw.githubusercontent.com/ssssota/nwoc-sm/master/nwoc-sm/src/assets/sm.svg" alt="nwoc-smのアイコン" slot="icon"/>
       <span slot="content">
         <p>豊田高専卒業時、5年間活動した吹奏楽部に贈った「楽譜管理アプリ」。</p>
         <p>
-          <Techtip name="Typescript"/>
+          <Techtip name="TypeScript"/>
           <Techtip name="Vue.js"/>
           <Techtip name="SCSS"/>
           <Techtip name="Firebase"/>
@@ -29,18 +29,18 @@
         </p>
       </span>
     </Item>
-    <Item title="Fontviewer">
+    <Item title="Fontviewer" href="https://github.com/ssssota/fontviewer" target="_blank">
       <img src="https://raw.githubusercontent.com/ssssota/fontviewer/master/src/icon256.png" alt="Fontviewerのアイコン" slot="icon"/>
       <span slot="content">
         <p>自分のデザイン補助ツールとして作ったフォント一覧表示アプリ。<a href="https://coliss.com/articles/build-websites/operation/design/fontviewer.html">coliss.com</a>様で紹介していただいた。</p>
         <p>
-          <Techtip name="Javascript"/>
+          <Techtip name="JavaScript"/>
           <Techtip name="CSS"/>
           <Techtip name="Electron"/>
         </p>
       </span>
     </Item>
-    <Item title="Portfolio">
+    <Item title="Portfolio" href="https://github.com/ssssota/ssssota.github.io" target="_blank">
       <img src="/favicon.png" alt="このページのアイコン" slot="icon"/>
       <span slot="content">
         <p>このページ。就活で必要になると思って急いで用意した。</p>
@@ -48,6 +48,27 @@
           <Techtip name="Svelte"/>
           <Techtip name="Github Pages"/>
           <Techtip name="Github Actions"/>
+        </p>
+      </span>
+    </Item>
+    <Item title="CSSアニメーションで「たべるんごのうた」" href="https://taberungo-no-uta.netlify.app/" target="_blank">
+      <img src="https://taberungo-no-uta.netlify.app/images/りんごろう.png" alt="りんごろう" slot="icon"/>
+      <span slot="content">
+        <p>流行りに乗ってCSSアニメーションの練習を兼ねて作った。</p>
+        <p>
+          <Techtip name="SCSS"/>
+          <Techtip name="CSSアニメーション"/>
+          <Techtip name="Svelte"/>
+        </p>
+      </span>
+    </Item>
+    <Item title="願う" href="https://negau-tanabata.web.app/" target="_blank">
+      <span slot="content">
+        <p>七夕の短冊飾り風画像ジェネレータ。Twitterなどで共有できる。</p>
+        <p>
+          <Techtip name="Firebase"/>
+          <Techtip name="Canvas"/>
+          <Techtip name="JavaScript"/>
         </p>
       </span>
     </Item>

@@ -1,19 +1,36 @@
 <script>
   export let title;
+  export let href;
+  export let target;
 </script>
 
 <section>
   <slot name="icon"></slot>
   <div>
-    <h3>{title || 'Title is a requried.'}</h3>
+    <h3>
+      {#if href}
+        <a {href} {target}>{title || 'Title is a requried.'}</a>
+      {:else}
+        {title || 'Title is a requried.'}
+      {/if}
+    </h3>
     <slot name="content"></slot>
   </div>
 </section>
 
-<style>
+<style type="text/scss">
 section {
   display: flex;
   flex: wrap;
   align-items: center;
+}
+a {
+  text-decoration: none;
+
+  &:link,
+  &:visited,
+  &:active {
+    color: inherit;
+  }
 }
 </style>
