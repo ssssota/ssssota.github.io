@@ -23,6 +23,8 @@
 	background: linear-gradient(60deg, #9affca, #9af1ff, #9ac4ff, #bc9aff, #e89aff, #ff9ad8, #ff9a9a, #f4ff9a, #a8ff9a);
 	background-size: 1800% 1800%;
 
+	font-family: 'Noto Sans JP', sans-serif;
+
 	-webkit-animation: background-gradient 300s linear infinite;
 	-moz-animation: background-gradient 300s linear infinite;
 	animation: background-gradient 300s linear infinite;

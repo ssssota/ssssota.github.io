@@ -1,7 +1,7 @@
 <script>
   export let title;
-  export let href;
-  export let target;
+  export let href = null;
+  export let target = null;
 </script>
 
 <section>
@@ -23,14 +23,18 @@ section {
   display: flex;
   flex: wrap;
   align-items: center;
-}
-a {
-  text-decoration: none;
+  
+  h3 {
+    font-family: 'Roboto', sans-serif;
+  }
+  a {
+    text-decoration: none;
 
-  &:link,
-  &:visited,
-  &:active {
-    color: inherit;
+    &:link,
+    &:visited,
+    &:active {
+      color: inherit;
+    }
   }
 }
 </style>

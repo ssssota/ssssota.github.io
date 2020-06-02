@@ -1,9 +1,8 @@
 <script>
   export let name;
-  export let color;
+  export let color = null;
 
   $: computedColor = color || `hsl(${name.split('').map(c=>c.charCodeAt(0)).reduce((acc,cur)=>acc^cur)*4%360}, 100%, 75%)`
-  $: console.log(computedColor)
 </script>
 
 <span style="background: {computedColor}">
