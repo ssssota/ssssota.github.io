@@ -5,6 +5,15 @@
 
 <Item title="Works">
   <span slot="content">
+    <Item title="fontscan" href="https://www.npmjs.com/package/fontscan" target="_blank">
+      <img src="./assets/noimage.svg" alt="NO Image" slot="icon"/>
+      <span slot="content">
+        <p>フォント情報を取得するNode.jsライブラリ。</p>
+        <p>
+          <Techtip name="TypeScript"/>
+        </p>
+      </span>
+    </Item>
     <Item title="nwoc-sm" href="https://github.com/ssssota/nwoc-sm" target="_blank">
       <img src="https://raw.githubusercontent.com/ssssota/nwoc-sm/master/nwoc-sm/src/assets/sm.svg" alt="nwoc-smのアイコン" slot="icon"/>
       <span slot="content">
@@ -63,6 +72,7 @@
       </span>
     </Item>
     <Item title="願う" href="https://negau-tanabata.web.app/" target="_blank">
+      <img src="./assets/noimage.svg" alt="NO Image" slot="icon"/>
       <span slot="content">
         <p>七夕の短冊飾り風画像ジェネレータ。Twitterなどで共有できる。</p>
         <p>
