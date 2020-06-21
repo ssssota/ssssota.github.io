@@ -5,30 +5,24 @@
 
 <Item title="History">
   <span slot="content">
-    <Item title="{selected.title}">
-      <p slot="content">{selected.detail}</p>
-    </Item>
-    <p><input type="range"></p>
+    <table>
+      <tr><th>1999/10/20</th><td>愛知県に生まれる</td></tr>
+      <tr><th>2015/04</th><td><a href="https://www.toyota-ct.ac.jp/" target="_blank">豊田工業高等専門学校</a> 入学</td></tr>
+      <tr><th>2018/08,09</th><td><a href="https://www.denkiyagi.jp/" target="_blank">デンキヤギ株式会社</a>にてインターン</td></tr>
+      <tr><th>2020/03</th><td>豊田工業高等専門学校 卒業</td></tr>
+      <tr><th></th><td>デンキヤギ株式会社にてアルバイト開始</td></tr>
+      <tr><th>2020/04</th><td><a href="https://www.kyutech.ac.jp/" target="_blank">九州工業大学</a> 入学（情報工学部）</td></tr>
+    </table>
   </span>
 </Item>
 
 <style type="text/scss">
-span {
-  input[type="range"] {
-    width: 60vw;
+table {
+  margin: 1em;
+  text-align: left;
 
-    appearance: none;
-    -webkit-appearance: none;
-    background-color: black;
-    line-height: 1;
-    height: 1px;
-    border-radius: 5px;
-  }
-}
-
-@media (max-width: 1304px) {
-  span input[type="range"] {
-    width: 70vw;
+  th {
+    padding: 0 0.5em;
   }
 }
 </style>

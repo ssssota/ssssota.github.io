@@ -10,6 +10,7 @@
 	<Splash/>
 	<About/>
 	<article>
+		<History/>
 		<Skills/>
 		<Works/>
 	</article>
