@@ -19,8 +19,8 @@
         </Item>
       </li>
       <li>
-        <Item title="Github">
-          <img slot="icon" src="./assets/GitHub-Mark.svg" alt="Githubのアイコン" width="{iconSize}" height="{iconSize}">
+        <Item title="GitHub">
+          <img slot="icon" src="./assets/GitHub-Mark.svg" alt="GitHubのアイコン" width="{iconSize}" height="{iconSize}">
           <p slot="content"><a href="https://github.com/ssssota" target="_blank">ssssota</a></p>
         </Item>
       </li>

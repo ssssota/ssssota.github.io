@@ -35,7 +35,7 @@
           <Techtip name="Vue.js"/>
           <Techtip name="SCSS"/>
           <Techtip name="Firebase"/>
-          <Techtip name="Github Actions"/>
+          <Techtip name="GitHub Actions"/>
         </p>
       </span>
     </Item>
@@ -67,8 +67,8 @@
         <p>このページ。就活で必要になると思って急いで用意した。</p>
         <p>
           <Techtip name="Svelte"/>
-          <Techtip name="Github Pages"/>
-          <Techtip name="Github Actions"/>
+          <Techtip name="GitHub Pages"/>
+          <Techtip name="GitHub Actions"/>
         </p>
       </span>
     </Item>
