@@ -1,8 +1,8 @@
 <script>
   import Item from './Item.svelte';
   const skills = [
-    { name: 'Javascript', detail: '何を作るにもだいたい使ってる。' },
-    { name: 'Typescript', detail: 'AltJSの中でも一番好き。' },
+    { name: 'JavaScript', detail: '何を作るにもだいたい使ってる。' },
+    { name: 'TypeScript', detail: 'AltJSの中でも一番好き。' },
     { name: 'Haxe', detail: 'アルバイト先の主力言語。AltJSとして使う。' },
     { name: 'C#', detail: 'JSよりネイティブ寄りなものを作るときに使う。' },
     { name: 'C', detail: 'Arduino言語として使うことが多い。' },
