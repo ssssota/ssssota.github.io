@@ -5,6 +5,18 @@
 
 <Item title="Works">
   <span slot="content">
+    <Item title="fontvuer" href="https://fontvuer.netlify.app" target="_blank">
+      <img src="https://fontvuer.netlify.app/icon.png" alt="fontvuer icon" slot="icon"/>
+      <span slot="content">
+        <p>フォント一覧表示アプリ。下記Fontviewerの後継。</p>
+        <p>
+          <Techtip name="TypeScript"/>
+          <Techtip name="Electron"/>
+          <Techtip name="Vue.js"/>
+          <Techtip name="GitHub Actions"/>
+        </p>
+      </span>
+    </Item>
     <Item title="fontscan" href="https://www.npmjs.com/package/fontscan" target="_blank">
       <img src="./assets/noimage.svg" alt="NO Image" slot="icon"/>
       <span slot="content">
