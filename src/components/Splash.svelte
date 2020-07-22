@@ -14,7 +14,7 @@
       class:skip-button="{active}"
       on:click="{() => active = false}"
     >
-      Skip >>
+      Skip &gt;&gt;
     </button>
   {/if}
 </div>
