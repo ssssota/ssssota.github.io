@@ -5,10 +5,11 @@
     { name: 'TypeScript', detail: 'AltJSの中でも一番好き。' },
     { name: 'Haxe', detail: 'アルバイト先の主力言語。AltJSとして使う。' },
     { name: 'C#', detail: 'JSよりネイティブ寄りなものを作るときに使う。' },
-    { name: 'C', detail: 'Arduino言語として使うことが多い。' },
     { name: 'Firebase', detail: '趣味で使うサーバレス環境。' },
-    { name: 'Azure', detail: 'アルバイト先で使うサーバレス環境。' },
-    { name: 'WebRTC', detail: 'いま熱いと思う技術。触ったことがあるのはWebAPIとOSSのmediasoup。' }
+    { name: 'Vue.js', detail: 'SFCなあたりが好き。' },
+    { name: 'React', detail: '素のJSなあたりが好き。' },
+    { name: 'Svelte', detail: 'TypeScript使わない軽い感じならこれ。' },
+    { name: 'CSS/SCSS', detail: 'デザインセンスは無いけど一通り書ける。' }
   ];
 </script>
 

@@ -91,6 +91,33 @@
           <Techtip name="Firebase"/>
           <Techtip name="Canvas"/>
           <Techtip name="JavaScript"/>
+          <Techtip name="OGP"/>
+        </p>
+      </span>
+    </Item>
+    <Item title="Favox" href="https://favox.cf/" target="_blank">
+      <img src="https://favox.cf/logo192.png" alt="Favox" slot="icon"/>
+      <span slot="content">
+        <p>サポーターズ主催サマーハッカソンにて作成。フロントエンド、デザイン・コーディングを担当。</p>
+        <p>
+          <Techtip name="Firebase"/>
+          <Techtip name="CSS"/>
+          <Techtip name="TypeScript"/>
+          <Techtip name="React"/>
+        </p>
+      </span>
+    </Item>
+    <Item title="私のイノカガ" href="https://inochino-kagayaki.web.app/" target="_blank">
+      <img src="https://inochino-kagayaki.web.app/logo256.png" alt="私のイノカガ" slot="icon"/>
+      <span slot="content">
+        <p>EXPO 2025ロゴの流行に乗り作成。</p>
+        <p>
+          <Techtip name="Firebase"/>
+          <Techtip name="CSS"/>
+          <Techtip name="TypeScript"/>
+          <Techtip name="canvas"/>
+          <Techtip name="React"/>
+          <Techtip name="OGP"/>
         </p>
       </span>
     </Item>
@@ -103,7 +130,7 @@ img {
   display: block;
   height: 5em;
 }
-  
+
 @media (max-width: 1304px) {
   img {
     height: 3em;
