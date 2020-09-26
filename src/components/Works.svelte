@@ -5,10 +5,30 @@
 
 <Item title="Works">
   <span slot="content">
+    <Item title="PROG.CAFE" href="https://github.com/shortintern2020-C-cryptograph/TeamG" target="_blank">
+      <img src="https://prog-cafe.web.app/logo192.png" alt="Prog.cafe icon" slot="icon"/>
+      <span slot="content">
+        <p>
+          楽天サマーインターンシップのおハッカソンで作成したアプリ。エンジニアのためのバーチャルコワーキングスペースをテーマに作成。
+          フロントエンド、スタイリング、WebSocketサーバを担当。
+        </p>
+        <p>
+          <Techtip name="TypeScript"/>
+          <Techtip name="Vue.js"/>
+          <Techtip name="GitHub Actions"/>
+          <Techtip name="WebSocket"/>
+          <Techtip name="SCSS"/>
+          <Techtip name="WebRTC"/>
+        </p>
+      </span>
+    </Item>
     <Item title="fontvuer" href="https://fontvuer.netlify.app" target="_blank">
       <img src="https://fontvuer.netlify.app/icon.png" alt="fontvuer icon" slot="icon"/>
       <span slot="content">
-        <p>フォント一覧表示アプリ。下記Fontviewerの後継。</p>
+        <p>
+          フォント一覧表示アプリ。下記Fontviewerの後継。
+          <a href="https://coliss.com/articles/build-websites/operation/design/fontvuer.html" target="_blank">coliss.com様の紹介記事</a>
+        </p>
         <p>
           <Techtip name="TypeScript"/>
           <Techtip name="Electron"/>
@@ -18,7 +38,7 @@
       </span>
     </Item>
     <Item title="fontscan" href="https://www.npmjs.com/package/fontscan" target="_blank">
-      <img src="./assets/noimage.svg" alt="NO Image" slot="icon"/>
+      <img src="./assets/noimage.svg" alt="no images" slot="icon"/>
       <span slot="content">
         <p>フォント情報を取得するNode.jsライブラリ。</p>
         <p>
@@ -84,7 +104,7 @@
       </span>
     </Item>
     <Item title="願う" href="https://negau-tanabata.web.app/" target="_blank">
-      <img src="./assets/noimage.svg" alt="NO Image" slot="icon"/>
+      <img src="./assets/noimage.svg" alt="no images" slot="icon"/>
       <span slot="content">
         <p>七夕の短冊飾り風画像ジェネレータ。Twitterなどで共有できる。</p>
         <p>
@@ -98,7 +118,7 @@
     <Item title="Favox" href="https://favox.cf/" target="_blank">
       <img src="https://favox.cf/logo192.png" alt="Favox" slot="icon"/>
       <span slot="content">
-        <p>サポーターズ主催サマーハッカソンにて作成。フロントエンド、デザイン・コーディングを担当。</p>
+        <p>サポーターズ主催サマーハッカソンにて作成。フロントエンド、スタイリングを担当。</p>
         <p>
           <Techtip name="Firebase"/>
           <Techtip name="CSS"/>

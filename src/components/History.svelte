@@ -12,6 +12,7 @@
       <tr><th>2020/03</th><td>豊田工業高等専門学校 卒業</td></tr>
       <tr><th></th><td>デンキヤギ株式会社にてアルバイト開始</td></tr>
       <tr><th>2020/04</th><td><a href="https://www.kyutech.ac.jp/" target="_blank">九州工業大学</a> 入学（情報工学部）</td></tr>
+      <tr><th>2020/09/14~25</th><td>楽天サマーインターンシップC日程ハッカソン優勝</td></tr>
     </table>
   </span>
 </Item>
