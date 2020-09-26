@@ -45,14 +45,14 @@
 main {
 	margin: 0 4%;
 	min-height: 100vh;
-	
+
 	display: flex;
 	flex-wrap: wrap;
 	background: rgba(255, 255, 255, 0.65);
 
 	article {
 		width: 75%;
-		padding-left: 2em;
+		padding: 0 2em;
 
 		& > :global(section > div > h3) {
 			margin-bottom: 0;
