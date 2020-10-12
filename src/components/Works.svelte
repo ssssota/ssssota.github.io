@@ -37,6 +37,21 @@
         </p>
       </span>
     </Item>
+    <Item title="SVOGP" href="https://github.com/ssssota/svogp" target="_blank">
+      <img src="./assets/noimage.svg" alt="no images" slot="icon"/>
+      <span slot="content">
+        <p>
+          OGPをMarkdownに表示できるようにする画像生成アプリ。
+        </p>
+        <p>
+          <Techtip name="TypeScript"/>
+          <Techtip name="Svelte"/>
+          <Techtip name="Vercel"/>
+          <Techtip name="SVG"/>
+          <Techtip name="CSS"/>
+        </p>
+      </span>
+    </Item>
     <Item title="fontscan" href="https://www.npmjs.com/package/fontscan" target="_blank">
       <img src="./assets/noimage.svg" alt="no images" slot="icon"/>
       <span slot="content">
