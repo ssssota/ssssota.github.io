@@ -62,7 +62,7 @@
       </span>
     </Item>
     <Item title="nwoc-sm" href="https://github.com/ssssota/nwoc-sm" target="_blank">
-      <img src="https://raw.githubusercontent.com/ssssota/nwoc-sm/master/nwoc-sm/src/assets/sm.svg" alt="nwoc-smのアイコン" slot="icon"/>
+      <img src="https://raw.githubusercontent.com/nwoc/nwoc-sm/master/hosting/src/assets/sm.svg" alt="nwoc-smのアイコン" slot="icon"/>
       <span slot="content">
         <p>豊田高専卒業時、5年間活動した吹奏楽部に贈った「楽譜管理アプリ」。</p>
         <p>
