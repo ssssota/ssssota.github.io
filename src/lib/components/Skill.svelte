@@ -13,7 +13,7 @@
       <span>⭐</span>
     {/each}
     {#if float !== 0}
-      <span class="half" style="--half-value:{float * 100}%">⭐</span>
+      <span class="half" style="--half-value:{(1 - float) * 100}%">⭐</span>
     {/if}
   </div>
   {#if skill.description !== undefined}
