@@ -1,44 +1,30 @@
-<script lang="ts" context="module">
-  export const hydrate = false;
-</script>
-
 <script lang="ts">
   import About from '$lib/components/About.svelte';
-  import Career from '$lib/components/Career.svelte';
-  import Skill from '$lib/components/Skill.svelte';
-  import Work from '$lib/components/Work.svelte';
-  import { about, careers, skills, works } from '$lib/data';
-  import '../app.css';
-
-  let sortedCareer: typeof careers;
-  $: sortedCareer = careers.sort((a, b) => {
-    if (b.to === undefined) return -1;
-    if (a.to === undefined) return 1;
-    return (
-      new Date(`${a.to.year}/${a.to.month}/1`).valueOf() -
-      new Date(`${b.to.year}/${b.to.month}/1`).valueOf()
-    );
-  });
+  import { about } from '$lib/data';
 </script>
 
 <About {about} />
 
-<h2>Careers</h2>
-{#each sortedCareer as career (career.name)}
-  <Career {career} />
-{/each}
+<ul>
+  <li><a href="./career"><span class="emoji">💼</span> Career</a></li>
+  <li><a href="./works"><span class="emoji">🧱</span> Works</a></li>
+  <li><a href="./skills"><span class="emoji">📚</span> Skills</a></li>
+</ul>
 
-<h2>Works</h2>
-{#each works as work (work.name)}
-  <Work {work} />
-{/each}
-
-<h2>Skills</h2>
-{#each skills.sort((a, b) => b.value - a.value) as skill (skill.name)}
-  <Skill {skill} />
-{/each}
-
-<footer>
-  <p><small>&copy; TOMIKAWA Sotaro</small></p>
-  <p><small>last modified: {new Date().toUTCString()}</small></p>
-</footer>
+<style>
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0.5em 0;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+  }
+  .emoji {
+    font-family: 'apple color emoji', 'segoe ui emoji', 'noto color emoji',
+      'android emoji, emojisymbols', 'emojione mozilla', 'twemoji mozilla',
+      'segoe ui symbol';
+  }
+</style>

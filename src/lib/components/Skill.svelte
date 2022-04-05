@@ -28,4 +28,7 @@
   .half {
     clip-path: inset(0 var(--half-value, 50%) 0 0);
   }
+  h3 {
+    margin: 0;
+  }
 </style>
