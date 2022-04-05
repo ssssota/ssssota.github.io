@@ -35,6 +35,10 @@ const config = {
     prerender: {
       default: true,
     },
+    browser: {
+      hydrate: false,
+      router: false,
+    },
     vite: {
       plugins: [tomlPlugin()],
       server: {
