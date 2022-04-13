@@ -93,6 +93,15 @@ SVG画像をPNGに変換するnpmライブラリ。
 Rust製のライブラリをWebAssemblyにし、使いやすくした。
 """
 
+[[works]]
+name = "svelte-exmarkdown"
+link = "https://zenn.dev/ssssota/articles/svelte-exmarkdown"
+description = """
+SvelteのMarkdownレンダリングコンポーネント。
+
+既存ライブラリでは拡張構文が使用できなかったので、プラグインシステムを導入し拡張性を持たせた。
+"""
+
 [[skills]]
 name = "TypeScript"
 value = 4.5
