@@ -1,0 +1,14 @@
+on:
+  push:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/setup-node
+      - run: pnpm check
+      - run: pnpm lint
+      - run: pnpm build
