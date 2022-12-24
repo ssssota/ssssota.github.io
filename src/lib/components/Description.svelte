@@ -1,6 +1,6 @@
 <script lang="ts">
-  import SvelteMarkdown from 'svelte-markdown';
+  import Markdown from 'svelte-exmarkdown';
   export let content: string;
 </script>
 
-<SvelteMarkdown source={content} />
+<Markdown md={content} />

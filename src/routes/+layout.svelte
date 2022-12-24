@@ -1,15 +1,10 @@
-<script lang="ts" context="module">
-  import type { Load } from '@sveltejs/kit';
-  export const load: Load = () => ({
-    props: { renderedAt: new Date().toISOString().substring(0, 10) },
-  });
-</script>
-
 <script lang="ts">
+  import type { PageData } from './$types';
+
   import Card from '$lib/components/Card.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import '../app.css';
-  export let renderedAt: string;
+  export let data: PageData;
 </script>
 
 <svelte:head>
@@ -26,7 +21,7 @@
 <main>
   <Card --bg-color="#f9f9f3">
     <slot />
-    <Footer lastModifiedAt={renderedAt} />
+    <Footer lastModifiedAt={data.renderedAt} />
   </Card>
 </main>
 

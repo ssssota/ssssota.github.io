@@ -1,46 +1,44 @@
-import * as t from 'io-ts';
+import { z } from 'zod';
 
-const optional = <T extends t.Mixed>(type: T) => t.union([type, t.undefined]);
-
-const yearMonth = t.type({
-  year: t.number,
-  month: t.number,
+const yearMonth = z.object({
+  year: z.number(),
+  month: z.number(),
 });
 
-export const Career = t.type({
-  name: t.string,
+export const Career = z.object({
+  name: z.string(),
   from: yearMonth,
-  to: optional(yearMonth),
-  description: optional(t.string),
-  link: optional(t.string),
+  to: z.optional(yearMonth),
+  description: z.optional(z.string()),
+  link: z.optional(z.string()),
 });
-export type Career = t.TypeOf<typeof Career>;
+export type Career = z.TypeOf<typeof Career>;
 
-export const Skill = t.type({
-  name: t.string,
-  description: optional(t.string),
-  value: t.number,
+export const Skill = z.object({
+  name: z.string(),
+  description: z.optional(z.string()),
+  value: z.number(),
 });
-export type Skill = t.TypeOf<typeof Skill>;
+export type Skill = z.TypeOf<typeof Skill>;
 
-export const Work = t.type({
-  name: t.string,
-  description: t.string,
-  link: t.string,
+export const Work = z.object({
+  name: z.string(),
+  description: z.string(),
+  link: z.string(),
 });
-export type Work = t.TypeOf<typeof Work>;
+export type Work = z.TypeOf<typeof Work>;
 
-export const About = t.type({
-  name: t.string,
-  nickname: optional(t.string),
-  github: optional(t.string),
-  twitter: optional(t.string),
+export const About = z.object({
+  name: z.string(),
+  nickname: z.optional(z.string()),
+  github: z.optional(z.string()),
+  twitter: z.optional(z.string()),
 });
-export type About = t.TypeOf<typeof About>;
+export type About = z.TypeOf<typeof About>;
 
-export const Toml = t.type({
+export const Toml = z.object({
   about: About,
-  careers: t.array(Career),
-  skills: t.array(Skill),
-  works: t.array(Work),
+  careers: z.array(Career),
+  skills: z.array(Skill),
+  works: z.array(Work),
 });
