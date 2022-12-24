@@ -8,6 +8,7 @@
   {#each skills.sort((a, b) => b.value - a.value) as skill (skill.name)}
     <Skill {skill} />
   {/each}
+  and so on...
 </div>
 
 <style>
