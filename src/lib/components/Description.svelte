@@ -1,6 +1,7 @@
 <script lang="ts">
-  import SvelteMarkdown from 'svelte-markdown';
+  import Markdown from 'svelte-exmarkdown';
+  import { gfmPlugin } from 'svelte-exmarkdown/gfm';
   export let content: string;
 </script>
 
-<SvelteMarkdown source={content} />
+<Markdown md={content} plugins={[gfmPlugin]} />
