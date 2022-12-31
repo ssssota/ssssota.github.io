@@ -1,0 +1,21 @@
+query getDiscussionsByCategory(
+  $owner: String!
+  $repo: String!
+  $categoryId: ID!
+  $cursor: String
+) {
+  repository(owner: $owner, name: $repo) {
+    discussions(categoryId: $categoryId, first: 20, after: $cursor) {
+      totalCount
+      nodes {
+        title
+        body
+        url
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}
