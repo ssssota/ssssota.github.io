@@ -2,8 +2,11 @@
 import { Octokit } from '@octokit/core';
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
+import { env } from 'process';
 
-const [owner, name] = import.meta.env.GITHUB_REPOSITORY.split('/');
+if (!env.GITHUB_REPOSITORY)
+  throw new Error('Set environment variable `GITHUB_REPOSITORY`');
+const [owner, name] = env.GITHUB_REPOSITORY.split('/');
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -26,7 +29,7 @@ const config = {
 };
 
 async function getArticlePathList(options) {
-  const octokit = new Octokit({ auth: import.meta.env.GITHUB_TOKEN });
+  const octokit = new Octokit({ auth: env.GITHUB_TOKEN });
   const category = await octokit.graphql(
     `query GetDiscussionCategoryBySlug(
       $owner: String!
