@@ -1,6 +1,15 @@
 // @ts-check
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import { Octokit } from '@octokit/core';
 import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/kit/vite';
+
+import { print } from 'graphql';
+import {
+  GetDiscussionCategoryBySlug,
+  GetDiscussionsByCategory,
+} from 'graphql-type';
+
+const [owner, name] = import.meta.env.GITHUB_REPOSITORY.split('/');
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,7 +19,50 @@ const config = {
 
   kit: {
     adapter: adapter(),
+    prerender: {
+      entries: [
+        '*',
+        ...(await getArticlePathList({
+          repository: { owner, name },
+          articleCategorySlug: 'articles',
+        })),
+      ],
+    },
   },
 };
+
+async function getArticlePathList(options) {
+  const octokit = new Octokit({ auth: import.meta.env.GITHUB_TOKEN });
+  const category = await octokit.graphql(print(GetDiscussionCategoryBySlug), {
+    owner: options.repository.owner,
+    repo: options.repository.name,
+    slug: options.articleCategorySlug,
+  });
+  const categoryId = category.repository?.discussionCategory?.id;
+  if (categoryId === undefined) throw new Error('Category not found.');
+
+  const articles = [];
+  let cursor = undefined;
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const res = await octokit.graphql(print(GetDiscussionsByCategory), {
+      owner: options.repository.owner,
+      repo: options.repository.name,
+      categoryId,
+      cursor,
+    });
+    res.repository?.discussions.nodes?.forEach((disc) => {
+      if (disc === null) return;
+      articles.push(`/articles/${disc.number}`);
+    });
+    if (
+      res.repository?.discussions.pageInfo.hasNextPage !== true ||
+      res.repository?.discussions.pageInfo.endCursor == null
+    )
+      break;
+    cursor = res.repository.discussions.pageInfo.endCursor;
+  }
+  return articles;
+}
 
 export default config;
