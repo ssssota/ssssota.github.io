@@ -11,5 +11,5 @@ jobs:
       - uses: ./.github/actions/setup-node
       - run: pnpm check
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: dummy
       - run: pnpm lint
