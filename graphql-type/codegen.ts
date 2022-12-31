@@ -8,9 +8,7 @@ const config: CodegenConfig = {
     'types.ts': {
       plugins: [
         {
-          add: {
-            content: '/* eslint-disable */',
-          },
+          add: { content: '/* eslint-disable */' },
         },
         { typescript: {} },
         { 'typescript-operations': {} },
@@ -47,6 +45,9 @@ const config: CodegenConfig = {
         },
       },
     },
+  },
+  hooks: {
+    beforeDone: 'pnpm -w fmt',
   },
 };
 
