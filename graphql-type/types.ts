@@ -27982,6 +27982,9 @@ export type GetDiscussionsByCategoryQuery = {
         readonly title: string;
         readonly body: string;
         readonly url: string;
+        readonly bodyText: string;
+        readonly number: number;
+        readonly createdAt: string;
       } | null> | null;
       readonly pageInfo: {
         readonly __typename?: 'PageInfo';
@@ -28019,6 +28022,9 @@ export const GetDiscussionsByCategory = gql`
           title
           body
           url
+          bodyText
+          number
+          createdAt
         }
         pageInfo {
           hasNextPage

@@ -12,8 +12,11 @@ import {
 } from 'graphql-type';
 
 type Article = {
+  slug: string;
   title: string;
   body: string;
+  createdAt: Date;
+  description: string;
   discussionUrl: string;
 };
 type Repository = {
@@ -63,6 +66,12 @@ export class Client {
         articles.push({
           body: disc.body,
           title: disc.title,
+          slug: disc.number.toString(),
+          createdAt: new Date(disc.createdAt),
+          description:
+            disc.bodyText.length > 80
+              ? `${disc.bodyText.slice(0, 80)} ...`
+              : disc.bodyText,
           discussionUrl: disc.url,
         });
       });

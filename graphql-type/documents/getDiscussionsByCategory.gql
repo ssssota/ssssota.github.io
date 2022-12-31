@@ -11,6 +11,9 @@ query getDiscussionsByCategory(
         title
         body
         url
+        bodyText
+        number
+        createdAt
       }
       pageInfo {
         hasNextPage
