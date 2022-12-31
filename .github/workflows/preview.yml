@@ -5,10 +5,10 @@ on:
 jobs:
   deploy-to-stg:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      discussions: read
-      pull-requests: write
+    # permissions:
+    #   contents: read
+    #   discussions: read
+    #   pull-requests: write
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
