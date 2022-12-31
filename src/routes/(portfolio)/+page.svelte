@@ -6,9 +6,9 @@
 <About {about} />
 
 <ul>
-  <li><a href="./career"><span class="emoji">💼</span> Career</a></li>
-  <li><a href="./works"><span class="emoji">🧱</span> Works</a></li>
-  <li><a href="./skills"><span class="emoji">📚</span> Skills</a></li>
+  <li><a href="/career"><span class="emoji">💼</span> Career</a></li>
+  <li><a href="/works"><span class="emoji">🧱</span> Works</a></li>
+  <li><a href="/skills"><span class="emoji">📚</span> Skills</a></li>
 </ul>
 
 <style>
