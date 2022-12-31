@@ -3,12 +3,6 @@ import { Octokit } from '@octokit/core';
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
-import { print } from 'graphql';
-import {
-  GetDiscussionCategoryBySlug,
-  GetDiscussionsByCategory,
-} from 'graphql-type';
-
 const [owner, name] = import.meta.env.GITHUB_REPOSITORY.split('/');
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -33,11 +27,24 @@ const config = {
 
 async function getArticlePathList(options) {
   const octokit = new Octokit({ auth: import.meta.env.GITHUB_TOKEN });
-  const category = await octokit.graphql(print(GetDiscussionCategoryBySlug), {
-    owner: options.repository.owner,
-    repo: options.repository.name,
-    slug: options.articleCategorySlug,
-  });
+  const category = await octokit.graphql(
+    `query GetDiscussionCategoryBySlug(
+      $owner: String!
+      $repo: String!
+      $slug: String!
+    ) {
+      repository(owner: $owner, name: $repo) {
+        discussionCategory(slug: $slug) {
+          id
+        }
+      }
+    }`,
+    {
+      owner: options.repository.owner,
+      repo: options.repository.name,
+      slug: options.articleCategorySlug,
+    }
+  );
   const categoryId = category.repository?.discussionCategory?.id;
   if (categoryId === undefined) throw new Error('Category not found.');
 
@@ -45,12 +52,32 @@ async function getArticlePathList(options) {
   let cursor = undefined;
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    const res = await octokit.graphql(print(GetDiscussionsByCategory), {
-      owner: options.repository.owner,
-      repo: options.repository.name,
-      categoryId,
-      cursor,
-    });
+    const res = await octokit.graphql(
+      `query getDiscussionsByCategory(
+        $owner: String!
+        $repo: String!
+        $categoryId: ID!
+        $cursor: String
+      ) {
+        repository(owner: $owner, name: $repo) {
+          discussions(categoryId: $categoryId, first: 20, after: $cursor) {
+            nodes {
+              number
+            }
+            pageInfo {
+              hasNextPage
+              endCursor
+            }
+          }
+        }
+      }`,
+      {
+        owner: options.repository.owner,
+        repo: options.repository.name,
+        categoryId,
+        cursor,
+      }
+    );
     res.repository?.discussions.nodes?.forEach((disc) => {
       if (disc === null) return;
       articles.push(`/articles/${disc.number}`);
