@@ -12,7 +12,19 @@ jobs:
       - uses: ./.github/actions/setup-node
       - name: Build svelte
         run: pnpm build
-      - run: npx wrangler pages publish build --project-name stg-ssssota
+      - run: npx wrangler pages publish build --project-name stg-ssssota | tee deploy.log
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: require('fs')
+                .readFileSync('deploy.log', 'utf8')
+                .split('\n')
+                .reduce((acc, cur) => (cur.trim() === '' ? acc : cur))
+            });
