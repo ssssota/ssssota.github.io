@@ -3,7 +3,6 @@ import { Client } from '$lib/data/client';
 import type { PageServerLoad } from './$types';
 
 const [owner, name] = GITHUB_REPOSITORY.split('/');
-console.log({ GITHUB_REPOSITORY, owner, name });
 
 export const load = (async () => {
   const client = new Client(GITHUB_TOKEN, {
