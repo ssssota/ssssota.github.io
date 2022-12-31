@@ -13,6 +13,8 @@ jobs:
       - uses: ./.github/actions/setup-node
       - name: Build svelte
         run: pnpm build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npx wrangler pages publish build --project-name stg-ssssota | tee deploy.log
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

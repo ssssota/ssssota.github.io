@@ -11,4 +11,3 @@ jobs:
       - uses: ./.github/actions/setup-node
       - run: pnpm check
       - run: pnpm lint
-      - run: pnpm build
