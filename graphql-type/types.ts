@@ -27946,6 +27946,29 @@ export type WorkflowRunOrderField =
   /** Order workflow runs by most recently created */
   'CREATED_AT';
 
+export type GetDiscussionByNumberQueryVariables = Exact<{
+  owner: Scalars['String'];
+  repo: Scalars['String'];
+  num: Scalars['Int'];
+}>;
+
+export type GetDiscussionByNumberQuery = {
+  readonly __typename?: 'Query';
+  readonly repository?: {
+    readonly __typename?: 'Repository';
+    readonly discussion?: {
+      readonly __typename?: 'Discussion';
+      readonly title: string;
+      readonly body: string;
+      readonly url: string;
+      readonly bodyText: string;
+      readonly number: number;
+      readonly createdAt: string;
+      readonly updatedAt: string;
+    } | null;
+  } | null;
+};
+
 export type GetDiscussionCategoryBySlugQueryVariables = Exact<{
   owner: Scalars['String'];
   repo: Scalars['String'];
@@ -27995,6 +28018,21 @@ export type GetDiscussionsByCategoryQuery = {
   } | null;
 };
 
+export const GetDiscussionByNumber = gql`
+  query getDiscussionByNumber($owner: String!, $repo: String!, $num: Int!) {
+    repository(owner: $owner, name: $repo) {
+      discussion(number: $num) {
+        title
+        body
+        url
+        bodyText
+        number
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
 export const GetDiscussionCategoryBySlug = gql`
   query GetDiscussionCategoryBySlug(
     $owner: String!
