@@ -12,7 +12,6 @@ jobs:
       actions: read
       checks: read
       deployments: read
-      id-token: read
       issues: read
       packages: read
       pages: read
