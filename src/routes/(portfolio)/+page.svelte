@@ -9,6 +9,7 @@
   <li><a href="/career"><span class="emoji">💼</span> Career</a></li>
   <li><a href="/works"><span class="emoji">🧱</span> Works</a></li>
   <li><a href="/skills"><span class="emoji">📚</span> Skills</a></li>
+  <li><a href="/articles"><span class="emoji">📝</span> Blog</a></li>
 </ul>
 
 <style>
