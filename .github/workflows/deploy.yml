@@ -9,9 +9,6 @@ jobs:
       name: cloudflare-pages
       url: https://ssssota.dev/
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      discussions: read
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
