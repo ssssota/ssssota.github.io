@@ -3,8 +3,8 @@
 
   export let data: PageData;
 
-  const pageLimit = 1;
-  let displayArticleCount = 0; //pageLimit;
+  const pageLimit = 5;
+  let displayArticleCount = pageLimit;
   const showMore = () => {
     displayArticleCount += pageLimit;
   };
