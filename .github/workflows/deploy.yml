@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - main
+  discussion:
+  workflow_dispatch:
 
 jobs:
   deploy-cf:
