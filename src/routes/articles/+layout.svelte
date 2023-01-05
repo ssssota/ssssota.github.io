@@ -23,7 +23,7 @@
 
     background-color: #faf0e0;
     color: #003;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   header {
     padding-top: 1em;
