@@ -10,6 +10,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/setup-node
       - run: pnpm check
-        env:
-          GITHUB_TOKEN: dummy
       - run: pnpm lint
