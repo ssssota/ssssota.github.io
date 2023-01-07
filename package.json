@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "prefetch": "tsx -r dotenv/config scripts/prefetch.ts",
+    "prefetch": "tsx --tsconfig tsconfig.tsx.json -r dotenv/config scripts/prefetch.ts",
     "dev": "vite dev",
-    "build": "svelte-kit sync && pnpm prefetch && vite build",
+    "build": "pnpm prefetch && svelte-kit sync && vite build",
     "preview": "vite preview",
-    "check": "svelte-kit sync && pnpm prefetch && svelte-check --tsconfig ./tsconfig.json",
+    "check": "pnpm prefetch && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "fmt": "prettier --plugin-search-dir . --write ."
   },
