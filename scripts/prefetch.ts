@@ -13,16 +13,30 @@ import {
   GetDiscussionsByCategory,
 } from '../graphql-type/types';
 
+const dummyArticles: ArticleBase[] = [
+  {
+    slug: '1',
+    title: 'Test',
+    body: '# Test',
+    description: 'Test',
+    createdAt: '2023-01-02T12:38:26Z',
+    discussionUrl: 'https://github.com/ssssota/ssssota.github.io/discussions/1',
+  },
+];
+
 async function main() {
-  const token = process.env.GITHUB_TOKEN;
-  if (token === undefined) throw new Error('Set GITHUB_TOKEN env var');
-  const [owner, repo] = process.env.GITHUB_REPOSITORY?.split('/') ?? [];
-  if (!owner || !repo) throw new Error('Set GITHUB_REPOSITORY env var');
-  const client = new Client(token, {
-    articleCategorySlug: 'articles',
-    repository: { owner, name: repo },
-  });
-  const articles = await client.getArticles();
+  const articles = await (async () => {
+    const token = process.env.GITHUB_TOKEN;
+    if (token === undefined) return dummyArticles;
+    const [owner, repo] = process.env.GITHUB_REPOSITORY?.split('/') ?? [];
+    if (!owner || !repo) return dummyArticles;
+    const client = new Client(token, {
+      articleCategorySlug: 'articles',
+      repository: { owner, name: repo },
+    });
+    const articles = await client.getArticles();
+    return articles;
+  })();
   const code = [JSON.stringify(articles, undefined, 2), ''].join('\n');
   await fs.writeFile('src/lib/articles.json', code);
 }
