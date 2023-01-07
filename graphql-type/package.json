@@ -16,5 +16,6 @@
     "@graphql-codegen/typescript-document-nodes": "^2.3.11",
     "@graphql-codegen/typescript-operations": "^2.5.11",
     "typescript": "^4.9.3"
-  }
+  },
+  "type": "module"
 }

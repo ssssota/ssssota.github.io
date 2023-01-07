@@ -1,24 +1,51 @@
 import { Octokit } from '@octokit/core';
 import { print } from 'graphql';
+import * as fs from 'node:fs/promises';
+import * as process from 'node:process';
 import type {
-  GetDiscussionByNumberQuery,
-  GetDiscussionByNumberQueryVariables,
   GetDiscussionCategoryBySlugQuery,
   GetDiscussionCategoryBySlugQueryVariables,
   GetDiscussionsByCategoryQuery,
   GetDiscussionsByCategoryQueryVariables,
-} from 'graphql-type';
+} from '../graphql-type/types';
 import {
-  GetDiscussionByNumber,
   GetDiscussionCategoryBySlug,
   GetDiscussionsByCategory,
-} from 'graphql-type';
+} from '../graphql-type/types';
+
+const dummyArticles: ArticleBase[] = [
+  {
+    slug: '1',
+    title: 'Test',
+    body: '# Test',
+    description: 'Test',
+    createdAt: '2023-01-02T12:38:26Z',
+    discussionUrl: 'https://github.com/ssssota/ssssota.github.io/discussions/1',
+  },
+];
+
+async function main() {
+  const articles = await (async () => {
+    const token = process.env.GITHUB_TOKEN;
+    if (token === undefined) return dummyArticles;
+    const [owner, repo] = process.env.GITHUB_REPOSITORY?.split('/') ?? [];
+    if (!owner || !repo) return dummyArticles;
+    const client = new Client(token, {
+      articleCategorySlug: 'articles',
+      repository: { owner, name: repo },
+    });
+    const articles = await client.getArticles();
+    return articles;
+  })();
+  const code = [JSON.stringify(articles, undefined, 2), ''].join('\n');
+  await fs.writeFile('src/lib/articles.json', code);
+}
 
 type ArticleBase = {
   slug: string;
   title: string;
   body: string;
-  createdAt: Date;
+  createdAt: string;
   description: string;
   discussionUrl: string;
 };
@@ -31,7 +58,7 @@ type ClientOptions = {
   articleCategorySlug: string;
 };
 
-export class Client {
+class Client {
   private octokit: Octokit;
   constructor(token: string, private options: ClientOptions) {
     this.octokit = new Octokit({ auth: token });
@@ -70,7 +97,7 @@ export class Client {
           body: disc.body,
           title: disc.title,
           slug: disc.number.toString(),
-          createdAt: new Date(disc.createdAt),
+          createdAt: disc.createdAt,
           description:
             disc.bodyText.length > 80
               ? `${disc.bodyText.slice(0, 80)} ...`
@@ -87,28 +114,6 @@ export class Client {
     }
     return articles;
   }
-
-  async getArticle(slug: string): Promise<ArticleBase> {
-    const res = await this.octokit.graphql<GetDiscussionByNumberQuery>(
-      print(GetDiscussionByNumber),
-      {
-        repo: this.options.repository.name,
-        owner: this.options.repository.owner,
-        num: Number(slug),
-      } satisfies GetDiscussionByNumberQueryVariables
-    );
-    if (res.repository?.discussion == null)
-      throw new Error('Article not found.');
-    return {
-      title: res.repository.discussion.title,
-      description:
-        res.repository.discussion.bodyText.length > 80
-          ? `${res.repository.discussion.bodyText.slice(0, 80)} ...`
-          : res.repository.discussion.bodyText,
-      body: res.repository.discussion.body,
-      createdAt: new Date(res.repository.discussion.createdAt),
-      slug,
-      discussionUrl: res.repository.discussion.url,
-    };
-  }
 }
+
+main().catch(console.error);

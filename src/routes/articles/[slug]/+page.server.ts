@@ -1,15 +1,9 @@
-import { GITHUB_REPOSITORY, GITHUB_TOKEN } from '$env/static/private';
-import { Client } from '$lib/data/client';
+import articles from '$lib/articles.json';
+import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
-const [owner, name] = GITHUB_REPOSITORY.split('/');
-
 export const load = (async ({ params }) => {
-  const client = new Client(GITHUB_TOKEN, {
-    repository: { name, owner },
-    articleCategorySlug: 'articles',
-  });
-  return {
-    article: await client.getArticle(params.slug),
-  };
+  const article = articles.find(({ slug }) => params.slug === slug);
+  if (article === undefined) throw error(404, 'Not Found');
+  return { article };
 }) satisfies PageServerLoad;

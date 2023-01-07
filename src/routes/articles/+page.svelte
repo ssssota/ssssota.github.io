@@ -20,7 +20,7 @@
     <section>
       <h2 class="title">{article.title}</h2>
       <p class="description">{article.description}</p>
-      <small>{article.createdAt.toISOString().split('T')[0]}</small>
+      <small>{new Date(article.createdAt).toISOString().split('T')[0]}</small>
     </section>
   </a>
 {/each}

@@ -8,7 +8,7 @@
 
 <article>
   <h1>{data.article.title}</h1>
-  <small>{data.article.createdAt.toISOString()}</small>
+  <small>{new Date(data.article.createdAt).toISOString()}</small>
 
   <Markdown plugins={[gfmPlugin]} md={data.article.body} />
 </article>
