@@ -2,19 +2,21 @@
   import Card from '$lib/components/Card.svelte';
 </script>
 
-<Card --bg-color="#f9f9f3">
-  <header>
-    <nav>
-      <a href="/">ssssota.dev</a>
-    </nav>
-  </header>
-  <main>
-    <slot />
-  </main>
-</Card>
+<div class="container">
+  <Card --bg-color="#f9f9f3">
+    <header>
+      <nav>
+        <a href="/">ssssota.dev</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+  </Card>
+</div>
 
 <style>
-  :root {
+  .container {
     padding: 30px 0;
     min-height: 100vh;
     display: flex;
@@ -35,6 +37,7 @@
     color: currentColor;
   }
   main {
-    width: min(20em, 75vw);
+    width: min(40em, 75vw);
+    padding-bottom: 2rem;
   }
 </style>

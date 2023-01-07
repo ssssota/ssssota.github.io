@@ -1,7 +1,7 @@
 // @ts-check
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
-import articles from './src/lib/articles.json' assert { type: 'json' };
+import * as fs from 'node:fs/promises';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   // Consult https://kit.svelte.dev/docs/integrations#preprocessors
@@ -11,13 +11,14 @@ const config = {
   kit: {
     adapter: adapter(),
     prerender: {
-      entries: ['*', ...getArticlePathList()],
+      entries: ['*', ...(await getArticlePathList())],
     },
   },
 };
 
-function getArticlePathList() {
-  return articles.map(({ slug }) => {
+async function getArticlePathList() {
+  const articles = await fs.readFile('./src/lib/articles.json', 'utf8');
+  return JSON.parse(articles).map(({ slug }) => {
     /** @type {`/${string}`} */
     const path = `/articles/${slug}`;
     return path;
