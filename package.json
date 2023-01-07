@@ -5,9 +5,9 @@
   "scripts": {
     "prefetch": "tsx -r dotenv/config scripts/prefetch.ts",
     "dev": "vite dev",
-    "build": "pnpm prefetch && vite build",
+    "build": "svelte-kit sync && pnpm prefetch && vite build",
     "preview": "vite preview",
-    "check": "pnpm prefetch && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check": "svelte-kit sync && pnpm prefetch && svelte-check --tsconfig ./tsconfig.json",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "fmt": "prettier --plugin-search-dir . --write ."
   },
