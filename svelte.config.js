@@ -17,7 +17,7 @@ const config = {
 };
 
 async function getArticlePathList() {
-  const articles = await fs.readFile('./src/lib/articles.json', 'utf8');
+  const articles = await fs.readFile('./src/lib/data/articles.json', 'utf8');
   return JSON.parse(articles).map(({ slug }) => {
     /** @type {`/${string}`} */
     const path = `/articles/${slug}`;

@@ -15,6 +15,24 @@ query getDiscussionsByCategory(
         number
         createdAt
         updatedAt
+        comments(first: 10) {
+          nodes {
+            author {
+              login
+            }
+            body
+            replies(first: 5) {
+              nodes {
+                author {
+                  login
+                }
+                body
+              }
+              totalCount
+            }
+          }
+          totalCount
+        }
       }
       pageInfo {
         hasNextPage

@@ -1,7 +1,6 @@
 {
   "name": "graphql-type",
   "private": true,
-  "main": "types.ts",
   "scripts": {
     "codegen": "graphql-codegen --config codegen.ts"
   },
@@ -17,5 +16,5 @@
     "@graphql-codegen/typescript-operations": "^2.5.11",
     "typescript": "^4.9.3"
   },
-  "type": "module"
+  "type": "commonjs"
 }
