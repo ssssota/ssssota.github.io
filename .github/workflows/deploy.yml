@@ -3,6 +3,7 @@ on:
     branches:
       - main
   discussion:
+  discussion_comment:
   workflow_dispatch:
 
 jobs:
