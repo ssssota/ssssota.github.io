@@ -16,7 +16,7 @@ importers:
       eslint-config-prettier: ^8.5.0
       eslint-plugin-svelte3: ^4.0.0
       graphql: ^16.6.0
-      graphql-type: workspace:./graphql-type
+      graphql-tag: ^2.12.6
       prettier: ^2.8.0
       prettier-plugin-svelte: ^2.8.1
       svelte: ^3.54.0
@@ -30,7 +30,6 @@ importers:
     dependencies:
       '@octokit/core': 4.1.0
       graphql: 16.6.0
-      graphql-type: link:graphql-type
       svelte-exmarkdown: 1.1.6
       zod: 3.20.2
     devDependencies:
@@ -44,6 +43,7 @@ importers:
       eslint: 8.30.0
       eslint-config-prettier: 8.5.0_eslint@8.30.0
       eslint-plugin-svelte3: 4.0.0_khrjkzzv5v2x7orkj5o7sxbz3a
+      graphql-tag: 2.12.6_graphql@16.6.0
       prettier: 2.8.1
       prettier-plugin-svelte: 2.9.0_ajxj753sv7dbwexjherrch25ta
       svelte: 3.55.0

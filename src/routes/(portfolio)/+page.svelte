@@ -10,6 +10,7 @@
   <li><a href="/works"><span class="emoji">🧱</span> Works</a></li>
   <li><a href="/skills"><span class="emoji">📚</span> Skills</a></li>
   <li><a href="/articles"><span class="emoji">📝</span> Blog</a></li>
+  <li><a href="/scraps"><span class="emoji">🗑️</span> Scraps</a></li>
 </ul>
 
 <style>

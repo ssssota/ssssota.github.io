@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "prefetch": "tsx --tsconfig tsconfig.tsx.json -r dotenv/config scripts/prefetch.ts",
+    "prefetch": "pnpm --dir graphql-type codegen && tsx --tsconfig tsconfig.tsx.json -r dotenv/config scripts/prefetch.ts",
     "dev": "vite dev",
     "build": "pnpm prefetch && svelte-kit sync && vite build",
     "preview": "vite preview",
@@ -14,7 +14,6 @@
   "dependencies": {
     "@octokit/core": "^4.1.0",
     "graphql": "^16.6.0",
-    "graphql-type": "workspace:./graphql-type",
     "svelte-exmarkdown": "^1.1.6",
     "zod": "^3.20.2"
   },
@@ -36,7 +35,8 @@
     "tslib": "^2.4.1",
     "tsx": "^3.12.1",
     "typescript": "^4.9.3",
-    "vite": "^4.0.0"
+    "vite": "^4.0.0",
+    "graphql-tag": "^2.12.6"
   },
   "type": "module",
   "packageManager": "pnpm@7.22.0"

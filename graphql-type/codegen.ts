@@ -5,7 +5,7 @@ const config: CodegenConfig = {
   schema: 'https://docs.github.com/public/schema.docs.graphql',
   documents: 'documents/**/*.gql',
   generates: {
-    'types.ts': {
+    '../scripts/types.ts': {
       plugins: [
         {
           add: { content: '/* eslint-disable */' },

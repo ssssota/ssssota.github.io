@@ -1,6 +1,6 @@
-import articles from '$lib/articles.json';
+import scraps from '$lib/data/scraps.json';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-  return { articles };
+  return { scraps };
 }) satisfies PageServerLoad;
