@@ -30,6 +30,7 @@ const dummyScraps: ScrapBase[] = [
     createdAt: '2023-01-15T12:59:37Z',
     description:
       'ssssota.devにZenn.devのようなスクラップ機能を作っていく。\n作業ログ兼サンプルデータとしてこれを残す。',
+    body: 'ssssota.devにZenn.devのようなスクラップ機能を作っていく。\r\n作業ログ兼サンプルデータとしてこれを残す。',
     discussionUrl:
       'https://github.com/ssssota/ssssota.github.io/discussions/18',
     threads: [
@@ -97,6 +98,7 @@ type ScrapBase = {
   title: string;
   createdAt: string;
   description: string;
+  body: string;
   discussionUrl: string;
   threads: {
     author: string;
@@ -242,6 +244,7 @@ class Client {
               slug: disc.number.toString(),
               createdAt: disc.createdAt,
               description: disc.bodyText,
+              body: disc.body,
               discussionUrl: disc.url,
               threads:
                 disc.comments.nodes?.flatMap((comment) => {

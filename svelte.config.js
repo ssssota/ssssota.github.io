@@ -11,7 +11,11 @@ const config = {
   kit: {
     adapter: adapter(),
     prerender: {
-      entries: ['*', ...(await getArticlePathList())],
+      entries: [
+        '*',
+        ...(await getArticlePathList()),
+        ...(await getScrapPathList()),
+      ],
     },
   },
 };
@@ -21,6 +25,14 @@ async function getArticlePathList() {
   return JSON.parse(articles).map(({ slug }) => {
     /** @type {`/${string}`} */
     const path = `/articles/${slug}`;
+    return path;
+  });
+}
+async function getScrapPathList() {
+  const scraps = await fs.readFile('./src/lib/data/scraps.json', 'utf8');
+  return JSON.parse(scraps).map(({ slug }) => {
+    /** @type {`/${string}`} */
+    const path = `/scraps/${slug}`;
     return path;
   });
 }

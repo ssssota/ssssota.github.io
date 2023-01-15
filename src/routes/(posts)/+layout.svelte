@@ -6,7 +6,11 @@
   <Card --bg-color="#f9f9f3">
     <header>
       <nav>
-        <a href="/">ssssota.dev</a>
+        <a class="top-link" href="/">ssssota.dev</a>
+        <div class="links">
+          <a href="/articles">Blog</a>
+          <a href="/scraps">Scraps</a>
+        </div>
       </nav>
     </header>
     <main>
@@ -30,11 +34,24 @@
   header {
     padding-top: 1em;
   }
+  header nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: space-between;
+    align-items: baseline;
+  }
   header nav a {
-    font-size: 2em;
-    font-weight: bold;
     text-decoration: none;
     color: currentColor;
+  }
+  .top-link {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  .links {
+    display: flex;
+    gap: 1em;
   }
   main {
     width: min(40em, 75vw);
