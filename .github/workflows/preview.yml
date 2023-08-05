@@ -5,6 +5,9 @@ on:
 jobs:
   deploy-to-stg:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # for checkout
+      issues: write # for comment
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
