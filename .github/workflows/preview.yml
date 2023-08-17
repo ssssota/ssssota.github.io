@@ -8,6 +8,7 @@ jobs:
     permissions:
       contents: read # for checkout
       issues: write # for comment
+      pull-requests: write # for comment
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
