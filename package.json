@@ -39,5 +39,5 @@
     "graphql-tag": "^2.12.6"
   },
   "type": "module",
-  "packageManager": "pnpm@7.22.0"
+  "packageManager": "pnpm@8.6.12"
 }
