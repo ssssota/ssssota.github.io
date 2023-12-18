@@ -12,32 +12,32 @@
     "fmt": "prettier --plugin-search-dir . --write ."
   },
   "dependencies": {
-    "@octokit/core": "^4.1.0",
+    "@octokit/core": "^4.2.4",
     "graphql": "^16.8.1",
-    "svelte-exmarkdown": "^1.1.6",
-    "zod": "^3.20.2"
+    "svelte-exmarkdown": "^1.1.8",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@iarna/toml": "^2.2.5",
-    "@rollup/pluginutils": "^5.0.2",
-    "@sveltejs/adapter-static": "^1.0.0",
-    "@sveltejs/kit": "^1.15.2",
-    "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.0",
-    "dotenv": "^16.0.3",
-    "eslint": "^8.28.0",
-    "eslint-config-prettier": "^8.5.0",
+    "@rollup/pluginutils": "^5.1.0",
+    "@sveltejs/adapter-static": "^1.0.6",
+    "@sveltejs/kit": "^1.30.3",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-svelte3": "^4.0.0",
-    "prettier": "^2.8.0",
-    "prettier-plugin-svelte": "^2.8.1",
-    "svelte": "^3.54.0",
-    "svelte-check": "^3.0.1",
-    "tslib": "^2.4.1",
-    "tsx": "^3.12.1",
-    "typescript": "^4.9.3",
-    "vite": "^4.0.5",
-    "graphql-tag": "^2.12.6"
+    "graphql-tag": "^2.12.6",
+    "prettier": "^2.8.8",
+    "prettier-plugin-svelte": "^2.10.1",
+    "svelte": "^3.59.2",
+    "svelte-check": "^3.6.2",
+    "tslib": "^2.6.2",
+    "tsx": "^3.14.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.5.1"
   },
   "type": "module",
-  "packageManager": "pnpm@8.6.12"
+  "packageManager": "pnpm@8.12.1"
 }
