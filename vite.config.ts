@@ -1,16 +1,20 @@
-import { sveltekit } from '@sveltejs/kit/vite';
 import TOML from '@iarna/toml';
+import type { FilterPattern } from '@rollup/pluginutils';
 import { createFilter, dataToEsm } from '@rollup/pluginutils';
+import { sveltekit } from '@sveltejs/kit/vite';
+import type { UserConfig } from 'vite';
 
-const tomlPlugin = (options = {}) => {
+const tomlPlugin = (
+  options: {
+    include?: FilterPattern;
+    exclude?: FilterPattern;
+  } = {},
+) => {
   const tomlExt = /\.toml$/;
   const filter = createFilter(options.include, options.exclude);
   return {
     name: 'toml',
-    /**
-     * @type {(content: string, id: string) => { code: string }}
-     */
-    transform: (content, id) => {
+    transform: (content: string, id: string) => {
       if (!tomlExt.test(id) || !filter(id)) return null;
       return {
         code: dataToEsm(TOML.parse(content), {
@@ -22,9 +26,6 @@ const tomlPlugin = (options = {}) => {
   };
 };
 
-/** @type {import('vite').UserConfig} */
-const config = {
+export default {
   plugins: [tomlPlugin(), sveltekit()],
-};
-
-export default config;
+} satisfies UserConfig;

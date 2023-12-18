@@ -2,7 +2,7 @@
   import Markdown from 'svelte-exmarkdown';
   import { gfmPlugin } from 'svelte-exmarkdown/gfm';
   import type { PageData } from './$types';
-  const plugins = [gfmPlugin];
+  const plugins = [gfmPlugin()];
   export let data: PageData;
 </script>
 

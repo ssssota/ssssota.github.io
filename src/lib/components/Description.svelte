@@ -4,4 +4,4 @@
   export let content: string;
 </script>
 
-<Markdown md={content} plugins={[gfmPlugin]} />
+<Markdown md={content} plugins={[gfmPlugin()]} />

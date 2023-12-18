@@ -21,7 +21,7 @@
   <h1>{data.article.title}</h1>
   <small>{new Date(data.article.createdAt).toISOString()}</small>
 
-  <Markdown plugins={[gfmPlugin]} md={data.article.body} />
+  <Markdown plugins={[gfmPlugin()]} md={data.article.body} />
 </article>
 
 <a href={data.article.discussionUrl}>Leave a comment.</a>
