@@ -6,7 +6,7 @@
   $: sortedCareer = careers.sort(
     (a, b) =>
       new Date(`${a.from.year}/${a.from.month}/1`).valueOf() -
-      new Date(`${b.from.year}/${b.from.month}/1`).valueOf()
+      new Date(`${b.from.year}/${b.from.month}/1`).valueOf(),
   );
 </script>
 

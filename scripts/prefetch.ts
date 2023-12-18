@@ -75,11 +75,11 @@ async function main() {
     await Promise.all([
       fs.writeFile(
         'src/lib/data/articles.json',
-        [JSON.stringify(articles, undefined, 2), ''].join('\n')
+        [JSON.stringify(articles, undefined, 2), ''].join('\n'),
       ),
       fs.writeFile(
         'src/lib/data/scraps.json',
-        [JSON.stringify(scraps, undefined, 2), ''].join('\n')
+        [JSON.stringify(scraps, undefined, 2), ''].join('\n'),
       ),
     ]);
   }
@@ -122,13 +122,16 @@ type NonNullable<T> = Exclude<T, null | undefined>;
 
 class Client {
   private octokit: Octokit;
-  constructor(token: string, private options: ClientOptions) {
+  constructor(
+    token: string,
+    private options: ClientOptions,
+  ) {
     this.octokit = new Octokit({ auth: token });
   }
 
   async getRateLimitRemaining(): Promise<number> {
     const { rateLimit } = await this.octokit.graphql<GetRateLimitStatusQuery>(
-      print(GetRateLimitStatus)
+      print(GetRateLimitStatus),
     );
     return rateLimit?.remaining ?? 0;
   }
@@ -141,7 +144,7 @@ class Client {
           owner: this.options.repository.owner,
           repo: this.options.repository.name,
           slug: this.options.articlesCategorySlug,
-        } satisfies GetDiscussionCategoryBySlugQueryVariables
+        } satisfies GetDiscussionCategoryBySlugQueryVariables,
       );
     const categoryId = category.repository?.discussionCategory?.id;
     if (categoryId === undefined) throw new Error('Category not found.');
@@ -162,7 +165,7 @@ class Client {
             repo: this.options.repository.name,
             categoryId,
             cursor,
-          } satisfies GetDiscussionsByCategoryQueryVariables
+          } satisfies GetDiscussionsByCategoryQueryVariables,
         );
       const nodes = res.repository?.discussions.nodes;
       if (nodes != null) {
@@ -202,7 +205,7 @@ class Client {
           owner: this.options.repository.owner,
           repo: this.options.repository.name,
           slug: this.options.scrapsCategorySlug,
-        } satisfies GetDiscussionCategoryBySlugQueryVariables
+        } satisfies GetDiscussionCategoryBySlugQueryVariables,
       );
     const categoryId = category.repository?.discussionCategory?.id;
     if (categoryId === undefined) throw new Error('Category not found.');
@@ -223,7 +226,7 @@ class Client {
             repo: this.options.repository.name,
             categoryId,
             cursor,
-          } satisfies GetDiscussionsByCategoryQueryVariables
+          } satisfies GetDiscussionsByCategoryQueryVariables,
         );
       const nodes = res.repository?.discussions.nodes;
       if (nodes != null) {
