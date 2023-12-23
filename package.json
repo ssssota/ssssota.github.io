@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@octokit/core": "^4.2.4",
+    "budoux": "^0.6.1",
     "graphql": "^16.8.1",
     "svelte-exmarkdown": "^3.0.1",
+    "svg2png-wasm": "^1.4.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {

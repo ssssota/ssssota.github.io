@@ -22,18 +22,18 @@ const config = {
 
 async function getArticlePathList() {
   const articles = await fs.readFile('./src/lib/data/articles.json', 'utf8');
-  return JSON.parse(articles).map(({ slug }) => {
+  return JSON.parse(articles).flatMap(({ slug }) => {
     /** @type {`/${string}`} */
     const path = `/articles/${slug}`;
-    return path;
+    return [path, `${path}/ogp.png`];
   });
 }
 async function getScrapPathList() {
   const scraps = await fs.readFile('./src/lib/data/scraps.json', 'utf8');
-  return JSON.parse(scraps).map(({ slug }) => {
+  return JSON.parse(scraps).flatMap(({ slug }) => {
     /** @type {`/${string}`} */
     const path = `/scraps/${slug}`;
-    return path;
+    return [path, `${path}/ogp.png`];
   });
 }
 export default config;
